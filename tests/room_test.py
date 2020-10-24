@@ -11,12 +11,13 @@ class TestRoom (unittest.TestCase):
         self.room3 = Room(4)
         self.room4 = Room(3)
 
-        self.karaoke_bar = [self.room1, self.room2, self.room3, self.room4]
+        rooms = [self.room1, self.room2, self.room3, self.room4]
 
         self.song1 = Song("Wannabe", "The Spice Girls", 1996)
         self.song2 = Song("Song 2", "Blur", 1997)
         self.song3 = Song("Three Times a Lady", "Commodores", 1978)
         self.song4 = Song("For Free", "Joni Mitchell", 1970)
+        self.song5 = Song("Spice Up Your Life", "The Spice Girls", 1997)
 
         self.songlist = [self.song1, self.song2, self.song3]
 
@@ -100,5 +101,17 @@ class TestRoom (unittest.TestCase):
         self.room1.add_guest(self.guest5)
         self.assertEqual(0, len(self.room1.guests))
 
+    def test_find_songs_by_artist(self):
+        self.room1.add_song(self.song1)
+        self.room1.add_song(self.song2)
+        self.room1.add_song(self.song5)
+        songs = self.room1.find_songs_by_artist("The Spice Girls")
+        self.assertEqual(2, len(songs))
+        self.assertEqual("Spice Up Your Life", songs[1].name)
+
+    def test_find_songs_by_year_released(self):
+        self.room1.add_song(self.song1)
+        songs = self.room1.find_songs_by_year_released(1996)
+        self.assertEqual("Wannabe", songs[0].name)
 
 
