@@ -23,6 +23,9 @@ class Room:
 
     def add_song(self, song):
         self.songs.append(song)
+        for guest in self.guests:
+            if song.name == guest.favourite_song:
+                return guest.cheer()
 
     def add_songlist(self, songlist):
         [self.songs.append(song) for song in songlist]

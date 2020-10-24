@@ -11,7 +11,7 @@ class TestRoom (unittest.TestCase):
         self.room3 = Room(4)
         self.room4 = Room(3)
 
-        rooms = [self.room1, self.room2, self.room3, self.room4]
+        self.rooms = [self.room1, self.room2, self.room3, self.room4]
 
         self.song1 = Song("Wannabe", "The Spice Girls", 1996)
         self.song2 = Song("Song 2", "Blur", 1997)
@@ -21,11 +21,11 @@ class TestRoom (unittest.TestCase):
 
         self.songlist = [self.song1, self.song2, self.song3]
 
-        self.guest1 = Guest("Bob", 10.00)
-        self.guest2 = Guest("Tina", 15.00)
-        self.guest3 = Guest("Linda", 8.00)
-        self.guest4 = Guest("Louise", 5.00)
-        self.guest5 = Guest("Ted", 2.00)
+        self.guest1 = Guest("Bob", 10.00, "Wannabe")
+        self.guest2 = Guest("Tina", 15.00, None)
+        self.guest3 = Guest("Linda", 8.00, None)
+        self.guest4 = Guest("Louise", 5.00, None)
+        self.guest5 = Guest("Ted", 2.00, None)
 
     def test_room_has_songs_attribute(self):
         self.assertEqual([], self.room1.songs)
@@ -113,5 +113,9 @@ class TestRoom (unittest.TestCase):
         self.room1.add_song(self.song1)
         songs = self.room1.find_songs_by_year_released(1996)
         self.assertEqual("Wannabe", songs[0].name)
+    
+    def test_favourite_song_response(self):
+        self.room1.add_guest(self.guest1)
+        self.assertEqual("Woo!", self.room1.add_song(self.song1))
 
 
