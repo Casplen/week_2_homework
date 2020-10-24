@@ -14,8 +14,8 @@ class TestSong (unittest.TestCase):
         self.assertEqual("Wannabe", self.song1.name)
 
     def test_song_has_artist(self):
-        self.assertEqual("The Spice Girls", self.song1.artist)
+        self.assertEqual("Blur", self.song2.artist)
 
     def test_song_has_year_released(self):
-        self.assertEqual(1996, self.song1.year_released)
+        self.assertEqual(1978, self.song3.year_released)
 
